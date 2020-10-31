@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GlideExample</string>
+    <string name="fetch">Fetch</string>
+    <string name="display">Display</string>
+</resources>
