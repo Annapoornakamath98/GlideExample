@@ -25,23 +25,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun loadImages(){
-        val retro = RetrofitInitializer.getRetrofitInstance()
-        val apiInterface = retro.create(APIInterface::class.java)
-        val objects : Call<ResponseObjects> = apiInterface.getRandomImages()
-        objects.enqueue(object : Callback<ResponseObjects>{
-            override fun onResponse(
-                    call: Call<ResponseObjects>,
-                    response: Response<ResponseObjects>
-            ) {
-                val data = response.body()!!.message
+        val viewModel = ViewModelClass()
+        viewModel.getRandomImages(object : RandomResponseInterface{
+            override fun onResponse(data: String) {
                 Glide.with(this@MainActivity)
                         .load(data)
                         .into(imageView)
             }
-            override fun onFailure(call: Call<ResponseObjects>, t: Throwable) {
+
+            override fun onFailure(t: Throwable) {
                 Toast.makeText(this@MainActivity,t.toString(),Toast.LENGTH_LONG).show()
             }
-
 
         })
     }

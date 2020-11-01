@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_display.*
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class DisplayActivity : AppCompatActivity() {
