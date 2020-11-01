@@ -19,30 +19,29 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
                 loadImages()
-//            Glide.with(this@MainActivity)
-//                        .load("https://dog.ceo/api/breeds/image/random")
-//                        .into(imageView)
-
         }
         btnDisplay.setOnClickListener {
             startActivity(Intent(applicationContext,DisplayActivity::class.java))
         }
     }
-    fun loadImages(){
+    private fun loadImages(){
         val retro = RetrofitInitializer.getRetrofitInstance()
         val apiInterface = retro.create(APIInterface::class.java)
-        val objects : Call<List<ResponseObjects>> = apiInterface.getImage()
-        objects.enqueue(object : Callback<List<ResponseObjects>>{
+        val objects : Call<ResponseObjects> = apiInterface.getRandomImages()
+        objects.enqueue(object : Callback<ResponseObjects>{
             override fun onResponse(
-                    call: Call<List<ResponseObjects>>,
-                    response: Response<List<ResponseObjects>>
+                    call: Call<ResponseObjects>,
+                    response: Response<ResponseObjects>
             ) {
-                val uList: List<ResponseObjects>? = response.body()
-                Toast.makeText(this@MainActivity,uList.toString(),Toast.LENGTH_LONG).show()
+                val data = response.body()!!.message
+                Glide.with(this@MainActivity)
+                        .load(data)
+                        .into(imageView)
             }
-            override fun onFailure(call: Call<List<ResponseObjects>>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseObjects>, t: Throwable) {
                 Toast.makeText(this@MainActivity,t.toString(),Toast.LENGTH_LONG).show()
             }
+
 
         })
     }
