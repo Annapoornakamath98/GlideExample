@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_display.*
-import retrofit2.Response
 
 class DisplayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val viewModel = ViewModelClass()
-        viewModel.getImages(object : ResponseInterface{
+        val viewModel = DogViewModel()
+        viewModel.getImages(object : DogListResponseInterface{
             override fun onResponse(data: List<String>) {
-                recyclerView.adapter = AdapterClass(this@DisplayActivity,data)
+                recyclerView.adapter = DogListAdapter(this@DisplayActivity,data)
             }
 
             override fun onFailure(t: Throwable) {

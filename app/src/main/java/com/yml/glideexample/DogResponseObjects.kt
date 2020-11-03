@@ -1,6 +1,6 @@
 package com.yml.glideexample
 
-data class ResponseObjects (
+data class DogResponseObjects (
     val message: String,
     val status : String
 )

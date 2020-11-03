@@ -5,8 +5,8 @@ import retrofit2.http.GET
 
 interface APIInterface {
     @GET("random")
-    fun getRandomImages(): Call<ResponseObjects>
+    fun getRandomImages(): Call<DogResponseObjects>
 
     @GET("random/30")
-    fun getImages(): Call<ResponseObjectList>
+    fun getImages(): Call<DogResponseObjectList>
 }

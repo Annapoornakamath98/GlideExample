@@ -1,6 +1,6 @@
 package com.yml.glideexample
 
-interface ResponseInterface {
+interface DogListResponseInterface {
     fun onResponse(data: List<String>)
     fun onFailure(t: Throwable)
 }

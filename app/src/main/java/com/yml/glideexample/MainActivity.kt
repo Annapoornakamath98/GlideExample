@@ -1,22 +1,16 @@
 package com.yml.glideexample
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         fab.setOnClickListener {
                 loadImages()
         }
@@ -25,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun loadImages(){
-        val viewModel = ViewModelClass()
-        viewModel.getRandomImages(object : RandomResponseInterface{
+        val viewModel = DogViewModel()
+        viewModel.getRandomImages(object : RandomDogResponseInterface{
             override fun onResponse(data: String) {
                 Glide.with(this@MainActivity)
                         .load(data)
